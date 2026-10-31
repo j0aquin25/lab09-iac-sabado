@@ -4,6 +4,34 @@ run-name: ${{github.actor}} esta ejecutando un pipeline
 on: [push]
 
 jobs:
+  Validar-Terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Validar el codigo de infraestructura con los comandos terraform fmt y terraform validate"
+  Validar-Ansible:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Lint a los playbooks de Ansible con el comando ansible-lint"
+  Analizar-Seguridad:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Escanear la infraestructura con Checkov y buscar secretos con Gitleaks"
+  Validar-Proyecto-Sonar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Analizar con SonarQube el proyecto"
+  Validar-Costos:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Estimar el costo del ambiente en AWS con Infracost"
+  Planificar-Despliegue:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Obtener credenciales temporales por OIDC y ejecutar terraform plan sobre el estado en S3"
+  Entregar-Ambiente:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Entregar el ambiente dev de BookHive en AWS con terraform apply y Ansible"
   Saludar-Hello-World:
     runs-on: ubuntu-latest
     steps:
